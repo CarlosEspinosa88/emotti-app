@@ -6,7 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 
 const Stack = createNativeStackNavigator();
-const ImageOne = require('./assets/images/item1.png');
+const ImageOne =  require('./assets/images/item1.png'); 
 const ImageTwo = require('./assets/images/item2.png');
 const ImageThree = require('./assets/images/item3.png');
 const ImageFour = require('./assets/images/item4.png');
@@ -16,9 +16,9 @@ function SlideOne({ navigation }) {
     <View style={styles.mainContainer}>
       <View style={styles.imageContainer}>
         <View style={styles.imageContainerText}>
-          <Image source={ImageOne} style={styles.image} sharedTransitionTag="tag" />
+          <Image source={ImageOne} style={styles.image} />
           <View style={styles.labelContainer}>
-            <Text style={styles.mainText}>Atormentado / Artormentada</Text>
+            <Text style={styles.mainText}>Tos</Text>
           </View> 
         </View>  
       </View>
@@ -134,10 +134,10 @@ function SlideFour({ route, navigation }) {
     <View style={styles.mainContainer}>
       <View style={styles.imageContainer}>
         <View style={styles.imageContainerText}>
-          <Image source={ImageFour} style={styles.image} />
+          <Image source={ImageFour} style={styles.image} sharedTransitionTag="tag" />
           <View style={styles.labelContainer}>
-            <Text style={styles.mainText}>Tos</Text>
-          </View>
+            <Text style={styles.mainText}>Atormentado / Artormentada</Text>
+          </View> 
         </View>
       </View>
       <View style={styles.buttonContainer}>
@@ -312,7 +312,6 @@ const styles = StyleSheet.create({
   labelContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    // marginBottom: 20
   },
   resumeText: {
     marginTop: 20,
