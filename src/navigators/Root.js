@@ -17,8 +17,6 @@ function Root() {
           name="SlideOne"
           component={SlideOne}
           options={{
-            animation: 'slide_from_righ',
-            animationDuration: 350,
             headerShown: false
           }}
         />
@@ -26,8 +24,6 @@ function Root() {
           name="SlideTwo"
           component={SlideTwo}
           options={{
-            animation: 'slide_from_righ',
-            animationDuration: 350,
             headerShown: false
           }}
         />
@@ -35,8 +31,6 @@ function Root() {
           name="SlideThree"
           component={SlideThree}
           options={{
-            animation: 'slide_from_righ',
-            animationDuration: 350,
             headerShown: false
           }}
         />
@@ -44,8 +38,6 @@ function Root() {
           name="SlideFour"
           component={SlideFour}
           options={{
-            animation: 'slide_from_righ',
-            animationDuration: 350,
             headerShown: false
           }}
         />
@@ -53,8 +45,6 @@ function Root() {
           name="ResumeTest"
           component={ResumeTest}
           options={{
-            animation: 'slide_from_righ',
-            animationDuration: 350,
             headerShown: false,
             gestureEnabled: false
           }}
