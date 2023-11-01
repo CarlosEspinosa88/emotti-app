@@ -8,6 +8,9 @@ const theme = {
     ...DefaultTheme.colors,
     primary: 'tomato',
     secondary: 'yellow',
+    white: 'white',
+    purple: '#663399',
+    ripple: 'rgba(255, 255, 255, 0.5)'
   },
 };
 
