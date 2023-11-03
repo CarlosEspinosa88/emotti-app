@@ -31,7 +31,7 @@ function PrimaryButton({
       textColor={textColor}
       accessibilityLabel={accessibilityLabel}
       accessibilityHint={accessibilityHint}
-      buttonColor={theme.colors.primary}
+      buttonColor={theme.colors.secondary}
       rippleColor={theme.colors.ripple}
       onPress={onPress}
     >
