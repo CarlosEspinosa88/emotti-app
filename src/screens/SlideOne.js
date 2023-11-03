@@ -1,51 +1,53 @@
 import React from 'react'
 import { View, Text, Image, StyleSheet } from 'react-native'
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useTheme } from 'react-native-paper';
 import { ImageOne } from '../images'
 import Button from '../components/Button'
 
-
 function SlideOne({ navigation }) {
-  const theme = useTheme();
+  const theme = useTheme()
 
   return (
-    <SafeAreaProvider>
-      <View style={styles.mainContainer}>
-        <View style={styles.imageContainer}>
-          <View style={styles.imageContainerText}>
-            <Image source={ImageOne} style={styles.image} />
-            <View style={styles.labelContainer}>
-              <Text style={styles.mainText}>Tos</Text>
-            </View> 
-          </View>  
-        </View>
-        <View style={styles.buttonContainer}>
-          <Button
-            title='NO'
-            style={styles.buttonTwo}
-            color={styles.colorButtonTwo}
-            onPress={() => {
-              navigation.navigate('SlideTwo', {
-                values: { atormentado: false }
-              })
-            }}
-          />
-          <Button
-            title='SI'
-            style={styles.buttonOne}
-            onPress={() => {
-              navigation.navigate('SlideTwo', {
-                values: { atormentado: true }
-              })
-            }} 
-          />
-        </View>
+    <View style={styles.mainContainer}>
+      <View style={styles.imageContainer}>
+        <View style={styles.imageContainerText}>
+          <Image source={ImageOne} style={styles.image} />
+          <View style={styles.labelContainer}>
+            <Text style={styles.mainText}>Tos</Text>
+          </View> 
+        </View>  
       </View>
-    </SafeAreaProvider>
+      <View style={styles.buttonContainer}>
+        <Button
+          title='NO'
+          mode="contained"
+          icon="thumb-down-outline"
+          testID='primary-button-no'
+          style={styles.buttonTwo}
+          textColor={theme.colors.purple}
+          onPress={() => {
+            navigation.navigate('SlideTwo', {
+              values: { atormentado: false }
+            })
+          }}
+        />
+        <Button
+          title='SI'
+          mode="contained"
+          icon="thumb-up-outline"
+          testID='primary-button-yes'
+          style={styles.buttonOne}
+          textColor={theme.colors.white}
+          onPress={() => {
+            navigation.navigate('SlideTwo', {
+              values: { atormentado: true }
+            })
+          }} 
+        />
+      </View>
+    </View>
   );
 }
-// theme.colors.primary
 
 const styles = StyleSheet.create({
   mainContainer: {
@@ -79,18 +81,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonOne: {
-    borderRadius: 50,
-    padding: 15,
     width: '40%',
-    alignItems: 'center',
-    backgroundColor: '#663399'
+    borderRadius: 50,
+    backgroundColor: '#663399',
+    padding: 5,
   },
   buttonTwo: {
-    borderRadius: 50,
-    padding: 15,
     width: '40%',
-    alignItems: 'center',
-    backgroundColor: '#d9c8ff'
+    borderRadius: 50,
+    backgroundColor: '#d9c8ff',
+    padding: 5,
   },
   colorButtonTwo: {
     color: '#663399'
