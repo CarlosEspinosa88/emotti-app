@@ -1,49 +1,79 @@
 import React from 'react'
-import { View, Text, Image, StyleSheet } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { View, Text, Image, StyleSheet, Platform } from 'react-native'
+import { useTheme } from 'react-native-paper';
 import { ImageThree } from '../images'
 import Button from '../components/Button'
 
 function SlideThree({ route, navigation }) {
+  const theme = useTheme();
   const { values } = route?.params;
 
+  const mainBackground = StyleSheet.compose([
+    styles.safeArea,
+    { backgroundColor: theme.colors.purple }
+  ])
+
+  const imageContainer = StyleSheet.compose([
+    styles.imageContainer,
+    { 
+      borderColor: theme.colors.darkRipple,
+      backgroundColor: theme.colors.white,
+    }
+  ])
+
   return (
-    <View style={styles.mainContainer}>
-      <View style={styles.imageContainer}>
-        <View style={styles.imageContainerText}>
-          <Image source={ImageThree} style={styles.image} />
-          <View style={styles.labelContainer}>
-            <Text style={styles.mainText}>Entiesamiento</Text>
+    <SafeAreaView style={mainBackground}>
+      <View style={styles.mainContainer}>
+        <View style={imageContainer}>
+          <View style={styles.imageContainerText}>
+            <Image source={ImageThree} style={styles.image} />
+            <View style={styles.labelContainer}>
+              <Text style={styles.mainText}>Entiesamiento</Text>
+            </View>
           </View>
         </View>
+        <View style={styles.buttonContainer}>
+          <Button
+            title='NO'
+            mode="contained"
+            icon="thumb-down-outline"
+            testID='primary-button-no'
+            style={styles.buttonTwo}
+            labelStyle={styles.buttonLabel}
+            textColor={theme.colors.purple}
+            onPress={() => navigation.navigate('SlideFour', {
+              values: {
+                ...values,
+                entiesamiento: false
+              }
+            })}
+          />
+          <Button
+            title='SI'
+            mode="contained"
+            icon="thumb-up-outline"
+            testID='primary-button-yes'
+            style={styles.buttonOne}
+            labelStyle={styles.buttonLabel}
+            textColor={theme.colors.purple}
+            onPress={() => navigation.navigate('SlideFour', {
+              values: {
+                ...values,
+                entiesamiento: true
+              }
+            })}
+          />
+        </View>
       </View>
-      <View style={styles.buttonContainer}>
-        <Button
-          title='NO'
-          style={styles.buttonTwo}
-          color={styles.colorButtonTwo}
-          onPress={() => navigation.navigate('SlideFour', {
-            values: {
-              ...values,
-              entiesamiento: false
-            }
-          })}
-        />
-        <Button
-          title='SI'
-          style={styles.buttonOne}
-          onPress={() => navigation.navigate('SlideFour', {
-            values: {
-              ...values,
-              entiesamiento: true
-            }
-          })}
-        />
-      </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+  },
   mainContainer: { 
     flex: 1,
     marginTop: 90,
@@ -75,27 +105,49 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonOne: {
-    borderRadius: 50,
-    padding: 15,
     width: '40%',
-    alignItems: 'center',
-    backgroundColor: '#663399'
+    borderRadius: 50,
+    padding: 5,
+    ...Platform.select({
+      ios: {
+        shadowColor: '#171717',
+        shadowOffset: {width: -2, height: 8},
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 20,
+        shadowColor: '#52006A',
+      }
+    })
   },
   buttonTwo: {
-    borderRadius: 50,
-    padding: 15,
     width: '40%',
-    alignItems: 'center',
-    backgroundColor: '#d9c8ff'
-  },
-  colorButtonTwo: {
-    color: '#663399'
+    borderRadius: 50,
+    backgroundColor: '#d9c8ff',
+    padding: 5,
+    ...Platform.select({
+      ios: {
+        shadowColor: '#171717',
+        shadowOffset: {width: -2, height: 8},
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 20,
+        shadowColor: '#52006A',
+      }
+    })
   },
   image: {
-    width: 320,
-    height: 350,
+    width: '100%',
+    height: '75%',
     borderRadius: 18,
   },
+  buttonLabel: {
+    fontSize: 16,
+    fontWeight: 'bold'
+  }
 });
 
 export default SlideThree
