@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   },
   mainContainer: {
     flex: 1,
-    marginTop: 90,
+    marginTop: 50,
     paddingHorizontal: 20,
   },
   mainText: {
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     fontSize: 22
   },
   imageContainer: {
-    flex: 0.7,
+    height: 450,
     borderWidth: 3,
     borderRadius: 20,
     marginBottom: 20

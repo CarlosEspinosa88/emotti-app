@@ -6,6 +6,7 @@ import SlideTwo from '../screens/SlideTwo'
 import SlideThree from '../screens/SlideThree'
 import SlideFour from '../screens/SlideFour'
 import ResumeTest from '../screens/ResumeTest'
+import TabNavigation from '../navigators/Tab'
 
 const Stack = createNativeStackNavigator();
 
@@ -15,7 +16,7 @@ function Root() {
       <Stack.Navigator initialRouteName="SlideOne">
         <Stack.Screen
           name="SlideOne"
-          component={SlideOne}
+          component={TabNavigation}
           options={{
             headerShown: false
           }}
