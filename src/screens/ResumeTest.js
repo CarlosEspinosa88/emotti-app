@@ -1,8 +1,10 @@
 import React from 'react'
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Platform } from 'react-native';
+import { useTheme } from 'react-native-paper';
 import Button from '../components/Button'
 
 function ResumeTest({ route, navigation }) {
+  const theme = useTheme();
   const { values } = route?.params;
   const data = Object.entries(values)
 
@@ -36,7 +38,11 @@ function ResumeTest({ route, navigation }) {
       <View style={styles.generalButtonContainer}>
         <Button
           title='Volver al test'
+          mode="contained"
+          testID='primary-button-yes'
           style={styles.generalButton}
+          labelStyle={styles.buttonLabel}
+          textColor={theme.colors.white}
           onPress={() => navigation.navigate('SlideOne')}
         />
       </View>
@@ -62,7 +68,19 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     borderColor: '#663399',
     borderWidth: 2,
-    borderRadius: 20
+    borderRadius: 20,
+    ...Platform.select({
+      ios: {
+        shadowColor: '#171717',
+        shadowOffset: {width: -2, height: 8},
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 20,
+        shadowColor: '#52006A',
+      }
+    })
   },
   generalButtonContainer: {
     marginTop: 20,
@@ -76,10 +94,25 @@ const styles = StyleSheet.create({
   },
   generalButton: {
     borderRadius: 50,
-    padding: 15,
+    padding: 5,
     width: '100%',
-    alignItems: 'center',
-    backgroundColor: '#663399'
+    backgroundColor: '#663399',
+    ...Platform.select({
+      ios: {
+        shadowColor: '#171717',
+        shadowOffset: {width: -2, height: 8},
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 20,
+        shadowColor: '#52006A',
+      }
+    })
+  },
+  buttonLabel: {
+    fontSize: 16,
+    fontWeight: 'bold'
   }
 });
 

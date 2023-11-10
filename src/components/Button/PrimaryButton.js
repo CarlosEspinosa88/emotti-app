@@ -2,10 +2,10 @@ import React from "react";
 import { Button, useTheme } from 'react-native-paper';
 
 function PrimaryButton({ 
-  icon,
   mode,
   title,
   textColor,
+  icon = '',
   dark = false,
   uppercase = false,
   disabled = false,
@@ -14,6 +14,8 @@ function PrimaryButton({
   accessibilityHint = 'hint_button',
   onPress = () => {}, 
   style = {},
+  labelStyle = {},
+  buttonColor = '',
   testID
 }) {
   const theme = useTheme()
@@ -29,9 +31,10 @@ function PrimaryButton({
       disabled={disabled}
       uppercase={uppercase}
       textColor={textColor}
+      labelStyle={labelStyle}
       accessibilityLabel={accessibilityLabel}
       accessibilityHint={accessibilityHint}
-      buttonColor={theme.colors.secondary}
+      buttonColor={buttonColor || theme.colors.secondary}
       rippleColor={theme.colors.ripple}
       onPress={onPress}
     >

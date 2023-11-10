@@ -1,6 +1,6 @@
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { View, Text, Image, StyleSheet } from 'react-native'
+import { View, Text, Image, StyleSheet, Platform } from 'react-native'
 import { useTheme } from 'react-native-paper';
 import { ImageOne } from '../images'
 import Button from '../components/Button'
@@ -39,6 +39,7 @@ function SlideOne({ navigation }) {
             icon="thumb-down-outline"
             testID='primary-button-no'
             style={styles.buttonTwo}
+            labelStyle={styles.buttonLabel}
             textColor={theme.colors.purple}
             onPress={() => {
               navigation.navigate('SlideTwo', {
@@ -52,6 +53,7 @@ function SlideOne({ navigation }) {
             icon="thumb-up-outline"
             testID='primary-button-yes'
             style={styles.buttonOne}
+            labelStyle={styles.buttonLabel}
             textColor={theme.colors.purple}
             onPress={() => {
               navigation.navigate('SlideTwo', {
@@ -101,18 +103,46 @@ const styles = StyleSheet.create({
     width: '40%',
     borderRadius: 50,
     padding: 5,
+    ...Platform.select({
+      ios: {
+        shadowColor: '#171717',
+        shadowOffset: {width: -2, height: 8},
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 20,
+        shadowColor: '#52006A',
+      }
+    })
   },
   buttonTwo: {
     width: '40%',
     borderRadius: 50,
     backgroundColor: '#d9c8ff',
     padding: 5,
+    ...Platform.select({
+      ios: {
+        shadowColor: '#171717',
+        shadowOffset: {width: -2, height: 8},
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 20,
+        shadowColor: '#52006A',
+      }
+    })
   },
   image: {
     width: '100%',
-    height: '70%',
+    height: '75%',
     borderRadius: 18,
   },
+  buttonLabel: {
+    fontSize: 16,
+    fontWeight: 'bold'
+  }
 });
 
 export default SlideOne
