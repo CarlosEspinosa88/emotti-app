@@ -5,6 +5,7 @@ import {
 } from 'react-native-safe-area-context';
 import { MD3LightTheme as DefaultTheme, PaperProvider } from 'react-native-paper';
 import MainStack from './src/navigators'
+import TabStack from './src/navigators/Tab'
 
 const theme = {
   ...DefaultTheme,
@@ -23,7 +24,7 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <PaperProvider theme={theme}>
-        <MainStack />
+          <MainStack />
       </PaperProvider>
     </SafeAreaProvider>
   ) 
