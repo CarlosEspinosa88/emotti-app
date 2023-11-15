@@ -10,7 +10,7 @@ function SlideOne({ navigation }) {
 
   const mainBackground = StyleSheet.compose([
     styles.safeArea,
-    { backgroundColor: theme.colors.purple }
+    { backgroundColor: theme.colors.primary }
   ])
 
   const imageContainer = StyleSheet.compose([
@@ -35,7 +35,7 @@ function SlideOne({ navigation }) {
         <View style={styles.buttonContainer}>
           <Button
             title='NO'
-            mode="contained"
+            mode="elevated"
             icon="thumb-down-outline"
             testID='primary-button-no'
             style={styles.buttonTwo}
@@ -49,7 +49,7 @@ function SlideOne({ navigation }) {
           />
           <Button
             title='SI'
-            mode="contained"
+            mode="elevated"
             icon="thumb-up-outline"
             testID='primary-button-yes'
             style={styles.buttonOne}
@@ -103,36 +103,12 @@ const styles = StyleSheet.create({
     width: '40%',
     borderRadius: 50,
     padding: 5,
-    ...Platform.select({
-      ios: {
-        shadowColor: '#171717',
-        shadowOffset: {width: -2, height: 8},
-        shadowOpacity: 0.2,
-        shadowRadius: 3,
-      },
-      android: {
-        elevation: 20,
-        shadowColor: '#52006A',
-      }
-    })
   },
   buttonTwo: {
     width: '40%',
     borderRadius: 50,
     backgroundColor: '#d9c8ff',
     padding: 5,
-    ...Platform.select({
-      ios: {
-        shadowColor: '#171717',
-        shadowOffset: {width: -2, height: 8},
-        shadowOpacity: 0.2,
-        shadowRadius: 3,
-      },
-      android: {
-        elevation: 20,
-        shadowColor: '#52006A',
-      }
-    })
   },
   image: {
     width: '100%',

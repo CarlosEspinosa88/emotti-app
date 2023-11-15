@@ -3,24 +3,15 @@ import {
   SafeAreaProvider,
   SafeAreaView
 } from 'react-native-safe-area-context';
-import { MD3LightTheme as DefaultTheme, PaperProvider } from 'react-native-paper';
+import { useColorScheme } from 'react-native';
+import { PaperProvider } from 'react-native-paper';
+import { darkTheme, lightTheme } from './src/theme'
 import MainStack from './src/navigators'
-import TabStack from './src/navigators/Tab'
-
-const theme = {
-  ...DefaultTheme,
-  colors: {
-    ...DefaultTheme.colors,
-    primary: 'tomato',
-    secondary: 'yellow',
-    white: 'white',
-    purple: '#663399',
-    ripple: 'rgba(255, 255, 255, 0.5)',
-    darkRipple: 'rgba(0, 0, 0, 0.5)'
-  },
-};
 
 export default function App() {
+  const scheme = useColorScheme();
+  const theme = scheme === 'dark' ? { ...darkTheme } : { ...lightTheme };
+  
   return (
     <SafeAreaProvider>
       <PaperProvider theme={theme}>
