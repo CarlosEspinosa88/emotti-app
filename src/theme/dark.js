@@ -46,9 +46,10 @@ export const darkTheme = {
     "surfaceDisabled": "rgba(231, 225, 229, 0.12)",
     "onSurfaceDisabled": "rgba(231, 225, 229, 0.38)",
     "backdrop": "rgba(51, 47, 55, 0.4)",
-    "custom0": "rgb(255, 183, 134)",
-    "onCustom0": "rgb(80, 36, 0)",
-    "custom0Container": "rgb(114, 54, 0)",
-    "onCustom0Container": "rgb(255, 220, 198)"
+    "custom0": "rgb(33, 33, 33)",
+    // "onCustom0": "rgb(80, 36, 0)",
+    // "custom0Container": "rgb(114, 54, 0)",
+    // "onCustom0Container": "rgb(255, 220, 198)",
+    "custom1": "rgb(255, 255, 255)",
   }
 }

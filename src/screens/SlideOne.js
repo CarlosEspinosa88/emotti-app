@@ -8,27 +8,28 @@ import Button from '../components/Button'
 function SlideOne({ navigation }) {
   const theme = useTheme()
 
-  const mainBackground = StyleSheet.compose([
-    styles.safeArea,
-    { backgroundColor: theme.colors.primary }
-  ])
-
-  const imageContainer = StyleSheet.compose([
-    styles.imageContainer,
-    { 
-      borderColor: theme.colors.darkRipple,
-      backgroundColor: theme.colors.white,
-    }
-  ])
-
   return (
-    <SafeAreaView style={mainBackground}>
+    <SafeAreaView style={[
+      styles.safeArea,
+      { backgroundColor: theme.colors.primary }
+    ]}>
       <View style={styles.mainContainer}>
-        <View style={imageContainer}>
+        <View style={[
+          styles.imageContainer,
+          { 
+            borderColor: theme.colors.inversePrimary,
+            backgroundColor: theme.colors.custom1,
+          }
+        ]}>
           <View style={styles.imageContainerText}>
             <Image source={ImageOne} style={styles.image} />
             <View style={styles.labelContainer}>
-              <Text style={styles.mainText}>Tos</Text>
+              <Text style={[
+                styles.mainText,
+                { color: theme.colors.custom0 }
+              ]}>
+                Tos
+              </Text>
             </View> 
           </View>  
         </View>
@@ -38,9 +39,12 @@ function SlideOne({ navigation }) {
             mode="elevated"
             icon="thumb-down-outline"
             testID='primary-button-no'
-            style={styles.buttonTwo}
+            style={[
+              styles.button,
+              { backgroundColor: theme.colors.inversePrimary }
+            ]}
             labelStyle={styles.buttonLabel}
-            textColor={theme.colors.purple}
+            textColor={theme.colors.onSecondaryContainer}
             onPress={() => {
               navigation.navigate('SlideTwo', {
                 values: { atormentado: false }
@@ -52,9 +56,12 @@ function SlideOne({ navigation }) {
             mode="elevated"
             icon="thumb-up-outline"
             testID='primary-button-yes'
-            style={styles.buttonOne}
+            style={[
+              styles.button,
+              { backgroundColor: theme.colors.inverseOnSurface }
+            ]}
             labelStyle={styles.buttonLabel}
-            textColor={theme.colors.purple}
+            textColor={theme.colors.onSecondaryContainer}
             onPress={() => {
               navigation.navigate('SlideTwo', {
                 values: { atormentado: true }
@@ -99,16 +106,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  buttonOne: {
+  button: {
     width: '40%',
     borderRadius: 50,
     padding: 5,
-  },
-  buttonTwo: {
-    width: '40%',
-    borderRadius: 50,
-    backgroundColor: '#d9c8ff',
-    padding: 5,
+    ...Platform.select({
+      ios: {
+        shadowColor: '#171717',
+        shadowOffset: {width: -2, height: 8},
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 20,
+        shadowColor: '#52006A',
+      }
+    })
   },
   image: {
     width: '100%',

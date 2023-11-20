@@ -46,9 +46,10 @@ export const lightTheme = {
     "surfaceDisabled": "rgba(29, 27, 30, 0.12)",
     "onSurfaceDisabled": "rgba(29, 27, 30, 0.38)",
     "backdrop": "rgba(51, 47, 55, 0.4)",
-    "custom0": "rgb(150, 73, 0)",
-    "onCustom0": "rgb(255, 255, 255)",
-    "custom0Container": "rgb(255, 220, 198)",
-    "onCustom0Container": "rgb(49, 19, 0)"
+    "custom0": "rgb(33, 33, 33)",
+    // "onCustom0": "rgb(255, 255, 255)",
+    // "custom0Container": "rgb(255, 220, 198)",
+    // "onCustom0Container": "rgb(49, 19, 0)",
+    "custom1": "rgb(255, 255, 255)",
   }
 }
