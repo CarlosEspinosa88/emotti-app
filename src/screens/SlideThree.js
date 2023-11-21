@@ -23,25 +23,42 @@ function SlideThree({ route, navigation }) {
   ])
 
   return (
-    <SafeAreaView style={mainBackground}>
+    <SafeAreaView style={[
+      styles.safeArea,
+      { backgroundColor: theme.colors.primary }
+    ]}>
       <View style={styles.mainContainer}>
-        <View style={imageContainer}>
+        <View style={[
+          styles.imageContainer,
+          { 
+            borderColor: theme.colors.inversePrimary,
+            backgroundColor: theme.colors.custom1,
+          }
+        ]}>
           <View style={styles.imageContainerText}>
             <Image source={ImageThree} style={styles.image} />
             <View style={styles.labelContainer}>
-              <Text style={styles.mainText}>Entiesamiento</Text>
+              <Text style={[
+                styles.mainText,
+                { color: theme.colors.custom0 }
+              ]}>
+                Entiesamiento
+              </Text>
             </View>
           </View>
         </View>
         <View style={styles.buttonContainer}>
           <Button
             title='NO'
-            mode="contained"
+            mode="elevated"
             icon="thumb-down-outline"
             testID='primary-button-no'
-            style={styles.buttonTwo}
+            style={[
+              styles.button,
+              { backgroundColor: theme.colors.inversePrimary }
+            ]}
             labelStyle={styles.buttonLabel}
-            textColor={theme.colors.purple}
+            textColor={theme.colors.onSecondaryContainer}
             onPress={() => navigation.navigate('SlideFour', {
               values: {
                 ...values,
@@ -51,12 +68,15 @@ function SlideThree({ route, navigation }) {
           />
           <Button
             title='SI'
-            mode="contained"
+            mode="elevated"
             icon="thumb-up-outline"
             testID='primary-button-yes'
-            style={styles.buttonOne}
+            style={[
+              styles.button,
+              { backgroundColor: theme.colors.inverseOnSurface }
+            ]}
             labelStyle={styles.buttonLabel}
-            textColor={theme.colors.purple}
+            textColor={theme.colors.onSecondaryContainer}
             onPress={() => navigation.navigate('SlideFour', {
               values: {
                 ...values,
@@ -85,9 +105,7 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     height: 450,
-    borderColor: '#663399',
     borderWidth: 2,
-    backgroundColor: '#FFF',
     borderRadius: 20,
     marginBottom: 20
   },
@@ -104,27 +122,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  buttonOne: {
+  button: {
     width: '40%',
     borderRadius: 50,
-    padding: 5,
-    ...Platform.select({
-      ios: {
-        shadowColor: '#171717',
-        shadowOffset: {width: -2, height: 8},
-        shadowOpacity: 0.2,
-        shadowRadius: 3,
-      },
-      android: {
-        elevation: 20,
-        shadowColor: '#52006A',
-      }
-    })
-  },
-  buttonTwo: {
-    width: '40%',
-    borderRadius: 50,
-    backgroundColor: '#d9c8ff',
     padding: 5,
     ...Platform.select({
       ios: {
