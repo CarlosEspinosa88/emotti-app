@@ -5,6 +5,7 @@ import { Text, BottomNavigation } from 'react-native-paper';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import SlideOne from '../screens/SlideOne'
+import Login from '../screens/Login'
 
 const Tab = createBottomTabNavigator();
 
@@ -82,6 +83,17 @@ function TabNavigation() {
           tabBarLabel: 'Settings',
           tabBarIcon: ({ color, size }) => {
             return <Icon name="cog" size={size} color={color} />;
+          },
+        }}
+      />
+
+      <Tab.Screen
+        name="Login"
+        component={Login}
+        options={{
+          tabBarLabel: 'Login',
+          tabBarIcon: ({ color, size }) => {
+            return <Icon name="login" size={size} color={color} />;
           },
         }}
       />
