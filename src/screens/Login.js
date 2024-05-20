@@ -1,4 +1,4 @@
-import React, {useCallback, useRef, useState, useEffect} from 'react';
+import React, { useCallback, useRef, useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -8,15 +8,13 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { useTheme } from 'react-native-paper';
+import { EMAIL_REGEX, NAME, EMAIL } from "../constants"
 import Button from "../components/Button"
 
 const Login = ({ navigation }) => {
   const theme = useTheme()
   const inputRefName = useRef(null);
-  const [value, setInputValue] = useState({
-    name: '',
-    email: ''
-  })
+  const inputRefEmail = useRef(null);
   const [error, setInputError] = useState({
     name: false,
     email: false
@@ -24,93 +22,85 @@ const Login = ({ navigation }) => {
   const [disabled, setDisabled] = useState(true)
 
   const handleDisable = useCallback(() => {
-    setDisabled(Object.values(error).includes(true) || Object.values(value).includes(''))
-  }, [error, value])
-  
-  const handleSetNative = useCallback(() => {
-    navigation.navigate('Home');
-
-    setInputValue((prevState) => ({
-      ...prevState,
-      name: '',
-      email: ''
-    }))
-
-    setInputError((prevState) => ({
-      ...prevState,
-      name: false,
-      email: false
-    }))
-  }, []) 
-
-  const handleOnChange = useCallback((name, value) => {
-    setInputValue((prevState) => ({
-      ...prevState,
-      [name]: value
-    }))
-  }, [value])
-
-  const handleOnBlur = useCallback((name, validValue) => {
-    if (name === 'email') {
-      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-
-      if (value[name].length === 0 || !emailRegex.test(validValue)) {
-        setInputError((prevState)=> ({
-          ...prevState,
-          [name]: true
-        }))
-      } else if (value[name].length > 1 || emailRegex.test(validValue)) {
-        setInputError((prevState)=> ({
-          ...prevState,
-          [name]: false
-        }))
-      }
+    if (Object.values(error).includes(true)) {
+      setDisabled(true)
     } else {
-      if (value[name].length === 0) {
+      setDisabled(false)
+    }
+  }, [error])
+  
+
+  const handleButtonNavigation = useCallback(() => {
+    navigation.navigate('Home');
+    setDisabled(true)
+  }, [error]) 
+
+  const refUserEmail = useCallback((e, inputName) => {
+    if (inputRefEmail.current) {
+      inputRefEmail.current.value = e
+
+      if (!EMAIL_REGEX.test(inputRefEmail.current.value)) {
         setInputError((prevState)=> ({
           ...prevState,
-          [name]: true
+          [inputName]: true
         }))
-      } else if (value[name].length > 1) {
+      } else {
         setInputError((prevState)=> ({
           ...prevState,
-          [name]: false
+          [inputName]: false
         }))
       }
     }
-  }, [value])
+  }, [error])
+
+  const refUserName = useCallback((e, inputName) => {
+    if (inputRefName.current) {
+      inputRefName.current.value = e
+
+      if (inputRefName.current.value === "") {
+        setInputError((prevState)=> ({
+          ...prevState,
+          [inputName]: true
+        }))
+      } else {
+        setInputError((prevState)=> ({
+          ...prevState,
+          [inputName]: false
+        }))
+      } 
+    }
+  }, [error])
 
   useEffect(() => {
-    inputRefName.current.focus()
+    if(inputRefName.current) {
+      inputRefName.current.focus()
+    }
   }, [])
 
   useEffect(() => {
     handleDisable()
-  }, [value, error])
+  }, [error])
 
   return (
     <View style={styles.container}>
       <TextInput
-        name="name"
-        value={value.name}
+        name={NAME}
         ref={inputRefName}
         allowFontScaling={false}
         placeholderTextColor={error?.name ? 'red' :'#979797'}
         placeholder={error?.name ? 'Campo obligatorio' : 'Ingresa tu nombre'}
         style={error?.name ? styles.inputError : styles.input}
-        onBlur={(e) => handleOnBlur('name', e.nativeEvent.text)}
-        onChange={(e) => handleOnChange('name', e.nativeEvent.text)}
+        onChangeText={(e) => refUserName(e, NAME)}
       />
       <TextInput
-        name="email"
+        name={EMAIL}
+        ref={inputRefEmail}
         autoCapitalize="none"
-        value={value.email}
         allowFontScaling={false}
         placeholderTextColor={error?.email ? 'red' : '#979797'}
         placeholder={error?.email ? 'Campo obligatorio' : 'Ingresa tu email'}
         style={error?.email ? styles.inputError : styles.input}
-        onBlur={(e) => handleOnBlur('email', e.nativeEvent.text)}
-        onChange={(e) => handleOnChange('email', e.nativeEvent.text)}
+        onChangeText={(e) => refUserEmail(e, EMAIL)}
       />
       <Button
         disabled={disabled}
@@ -121,11 +111,11 @@ const Login = ({ navigation }) => {
           styles.button,
           disabled 
           ? { backgroundColor: theme.colors.surface } 
-          : {backgroundColor: theme.colors.inversePrimary }
+          : { backgroundColor: theme.colors.inversePrimary }
         ]}
         labelStyle={styles.buttonLabel}
         textColor={theme.colors.onSecondaryContainer}
-        onPress={handleSetNative} 
+        onPress={handleButtonNavigation} 
       />
     </View>
   );
