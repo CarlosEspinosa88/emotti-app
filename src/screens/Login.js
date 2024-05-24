@@ -20,11 +20,11 @@ const Login = ({ navigation }) => {
     email: false
   })
   const [disabled, setDisabled] = useState(true)
-
+  
   const handleDisable = useCallback(() => {
     if (Object.values(error).includes(true)) {
       setDisabled(true)
-    } else {
+    } else if (inputRefEmail.current.value && inputRefName.current.value) {
       setDisabled(false)
     }
   }, [error])
@@ -33,7 +33,12 @@ const Login = ({ navigation }) => {
   const handleButtonNavigation = useCallback(() => {
     navigation.navigate('Home');
     setDisabled(true)
-  }, [error]) 
+
+    inputRefName.current.value = undefined
+    inputRefEmail.current.value = undefined
+    inputRefName.current.clear()
+    inputRefEmail.current.clear()
+  }, []) 
 
   const refUserEmail = useCallback((e, inputName) => {
     if (inputRefEmail.current) {
