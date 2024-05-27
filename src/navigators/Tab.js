@@ -6,6 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import SlideOne from '../screens/SlideOne'
 import Login from '../screens/Login'
+import Testing from '../screens/Testing';
 
 const Tab = createBottomTabNavigator();
 
